@@ -8,10 +8,7 @@ const EmployeeSchema =new mongoose.Schema({
         type: String,
         required: true
       },
-      password: {
-        type: Number,
-        required: true
-      },
+      password:String
 
 
 })

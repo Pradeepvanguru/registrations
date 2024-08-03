@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import axios from "axios"
+import { useNavigate } from 'react-router-dom'
 
 function Signup() {
 
@@ -12,6 +13,7 @@ function Signup() {
         email:"",
         password:""
       })
+      const navigate=useNavigate()
 
 
      const handleChange=(e)=>{
@@ -27,7 +29,8 @@ function Signup() {
      console.log(formData)
      axios.post("http://localhost:3006/Std_details", formData) //collection name=std_datails
      .then(response => {
-         console.log("posted");  
+         console.log("saved to database");  
+      navigate('/login')
          
      })
      .catch(error => {
@@ -46,27 +49,27 @@ function Signup() {
           <label htmlFor='name'>
             <strong>Name</strong>
           </label>
-          <input onChange={handleChange} className='form-control rounded-0' type='name' autoComplete='' placeholder='Enter Name' name="username" />
+          <input onChange={handleChange} className='form-control rounded-0' type='name' autoComplete='' placeholder='Enter Name' name="username" required/>
         </div>
 
         <div className='mb-3'>
           <label htmlFor='email'>
             <strong>Email</strong>
           </label>
-          <input onChange={handleChange} className='form-control rounded-0' type='email' placeholder='Enter email' name="email"  /> 
+          <input onChange={handleChange} className='form-control rounded-0' type='email' placeholder='Enter email' name="email" required /> 
         </div>
         
         <div className='mb-3'>
           <label htmlFor="possword">
             <strong>Password</strong>
           </label>
-          <input onChange={handleChange} placeholder='enter password' type='password' name="password" className='form-control rounded-0'/>
+          <input onChange={handleChange} placeholder='enter password' type='password' name="password" className='form-control rounded-0' required/>
         </div>
 
             <button className='btn btn-success w-100 rounded-0 mb-3'>Register</button>
             </form>
-            <p className='align-items-center text-primary'>Already have an account?</p>
-            <Link to="/login" className='btn btn-defult border w-100 bg-light rounded-0 text-decoration-none'>Login</Link>
+            <p className='align-items-center text-primary'>Do you have Already an account?Login Here👇</p>
+            <Link to="/login" className=' bg-secondary btn btn-defult border w-100  rounded-4 text-decoration-none'>Login</Link>
    
 
     </div>
